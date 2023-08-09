@@ -19,7 +19,11 @@ class Context:
         self._plan = ""
         self._answer = ""
         self.embedding_store = embedding_store
-        self.actions = [""]
+        self.actions = []
+        self.action_resp = []
+        self.location = ""
+        self.content = ""
+        self.buffer = ""
         self.transition_to(state)
 
     def transition_to(self, state: State):
@@ -41,7 +45,7 @@ class Context:
     @property
     def plan(self):
         return self._plan
-    
+
     @plan.setter
     def plan(self, plan):
         print(f"\033[94mContext: updated plan:\n{plan}\033[0m")
@@ -50,7 +54,7 @@ class Context:
     @property
     def answer(self):
         return self._answer
-    
+
     @answer.setter
     def answer(self, answer):
         print(f"\033[92mContext: updated answer: {answer}\033[0m")
@@ -76,4 +80,3 @@ class State(ABC):
     @abstractmethod
     def run(self) -> None:
         pass
-
